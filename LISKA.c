@@ -8,9 +8,9 @@ uint64_t xorshift(const char *key, size_t key_tam) { // idea de xorshift*
     for (size_t i = 0; i < key_tam; i++) { //esto sirve para inicializar el estado de xorshift con la llave y su tamaño
         k ^= (uint64_t)(key[i] + 1);
     }
-    k ^= k << 31;
-    k ^= k >> 11;
-    k ^= k ^ (k >> 30);
+    k ^= k << 13;
+    k ^= k >> 17;
+    k ^= k ^ (k >> 5);
     return k;
 }
 
@@ -70,8 +70,8 @@ void hexadecimal(const char *datos) {
 int main() {
     const char *texto = "Wired";
     const char *key = "Lain";
-    char *datos_cifrados = (char *)malloc(strlen(texto));
-    char *datos_decifrados = (char *)malloc(strlen(texto));
+    char *datos_cifrados = (char*)malloc(strlen(texto));
+    char *datos_decifrados = (char*)malloc(strlen(texto));
 
     cifrar_LISKA(texto, key, datos_cifrados);
     printf("Cifrado: ");
