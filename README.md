@@ -13,7 +13,7 @@ Algoritmo de cifrado simetrico que utiliza una longitud de llave variable
 
 ## Algoritmos adicionales que se implementan
 
-- **xorshift**: Es un PRNG el cual funciona haciendo XOR de una palabra de 64 bits (en este caso) con la version desplazada de si misma. En esta implementacion produce un valor pseudoaleatorio con la llave que ingresa el usuario, esto sirve como la semilla del PCG
+- **xorshift**: Es un PRNG el cual funciona haciendo XOR de una palabra de 64 bits (en este caso) con la version desplazada de si misma. En esta implementacion produce un valor pseudoaleatorio con la llave que ingresa el usuario
   
 - **SplixMix**: Es el algoritmo que inicializa el estado de otro PRNG de nombre "xoroshiro/xoshiro", en este caso, se usa para mezclar aun mas el valor generado por xorshift
 
