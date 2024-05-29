@@ -5,7 +5,7 @@
 
 uint64_t xorshift(const char *key, size_t key_tam) { // idea de xorshift*
     uint64_t k = 0;
-    for (size_t i = 0; i < key_tam; i++) {
+    for (size_t i = 0; i < key_tam; i++) { //esto sirve para inicializar el estado de xorshift con la llave y su tamaño
         k ^= (uint64_t)(key[i] + 1);
     }
     k ^= k << 31;
@@ -43,7 +43,7 @@ void cifrar_LISKA(const char *datos, const char *key, char *datos_cifrados) {
 void decifrar_LISKA(const char *datos, const char *key, char *datos_decifrados) {
     uint8_t key_byte, c;
     uint64_t key_xorshift = xorshift(key, strlen(key));
-    uint64_t s = key_xorshift;
+    uint64_t s = key_xorshift; //asigna el valor de "key_xorshift" resultante de "xorshift" para el estado "s" de splitmix
 
     for (size_t i = 0; i <= strlen(datos); i++) {
         s = split_mix(s);
