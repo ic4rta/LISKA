@@ -70,8 +70,8 @@ void hexadecimal(const char *datos) {
 int main() {
     const char *texto = "Wired";
     const char *key = "Lain";
-    char *datos_cifrados = (char*)malloc(strlen(texto));
-    char *datos_decifrados = (char*)malloc(strlen(texto));
+    char *datos_cifrados = (char*)malloc(strlen(texto) + 1);
+    char *datos_decifrados = (char*)malloc(strlen(texto) + 1);
 
     cifrar_LISKA(texto, key, datos_cifrados);
     printf("Cifrado: ");
