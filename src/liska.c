@@ -3,7 +3,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-uint64_t xorshift(const char *key, size_t key_tam) { // idea de xorshift*
+// idea de xorshift*
+uint64_t xorshift(const char *key, size_t key_tam) { 
     uint64_t k = 0;
     for (size_t i = 0; i < key_tam; i++) { //esto sirve para inicializar el estado de xorshift con la llave y su tamaño
         k ^= (uint64_t)(key[i] + 1);
@@ -14,14 +15,15 @@ uint64_t xorshift(const char *key, size_t key_tam) { // idea de xorshift*
     return k;
 }
 
-uint64_t split_mix(uint64_t s) { // idea de xoroshiro
+ // idea de xoroshiro
+uint64_t split_mix(uint64_t s) {
     s = (s += 0x9E3779B97F4A7C15);
     s = (s ^ (s >> 30)) * 0xBF58476D1CE4E5B9;
     s = (s ^ (s >> 27)) * 0x95D049BB133111EB;
     return (s ^ (s >> 31));
 }
 
-void cifrar_LISKA(const char *datos, const char *key, char *datos_cifrados) {
+void cifrar_liska(const char *datos, const char *key, char *datos_cifrados) {
     uint8_t key_byte, c, x;
     uint64_t key_xorshift = xorshift(key, strlen(key));
     uint64_t s = key_xorshift;
@@ -40,7 +42,7 @@ void cifrar_LISKA(const char *datos, const char *key, char *datos_cifrados) {
     datos_cifrados[strlen(datos)] = '\0';
 }
 
-void decifrar_LISKA(const char *datos, const char *key, char *datos_decifrados) {
+void decifrar_liska(const char *datos, const char *key, char *datos_decifrados) {
     uint8_t key_byte, c;
     uint64_t key_xorshift = xorshift(key, strlen(key));
     uint64_t s = key_xorshift; //asigna el valor de "key_xorshift" resultante de "xorshift" para el estado "s" de splitmix
@@ -65,19 +67,4 @@ void hexadecimal(const char *datos) {
         datos++;
     }
     printf("\n");
-}
-
-int main() {
-    const char *texto = "Wired";
-    const char *key = "Lain";
-    char *datos_cifrados = (char*)malloc(strlen(texto) + 1);
-    char *datos_decifrados = (char*)malloc(strlen(texto) + 1);
-
-    cifrar_LISKA(texto, key, datos_cifrados);
-    printf("Cifrado: ");
-    hexadecimal(datos_cifrados);
-
-    decifrar_LISKA(datos_cifrados, key, datos_decifrados);
-    printf("Descifrado: %s\n", datos_decifrados);
-    return 0;
 }

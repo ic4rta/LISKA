@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/ic4rta/LISKA/blob/main/lain.png" alt="drawing" width="150"/>
+  <img src="https://github.com/ic4rta/LISKA/assets/blob/main/lain.png" alt="drawing" width="150"/>
 </p>
 
 <bold><p align="center">
@@ -97,8 +97,73 @@ Y para finalizar se asigna el valor del caracter cifrado de la posicion correspo
 datos_decifrados[i] = c;
 ```
 
+## Uso
+
+**Instalar**
+
+```sudo make install```
+
+**Desinstalar**
+
+```sudo make unistall```
+
+**Clean**
+
+```sudo make clean```
+
+
+---
+
+```c
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "liska.h"
+
+
+int main() {
+    const char *texto = "Wired";
+    const char *key = "Lain";
+    char *datos_cifrados = (char*)malloc(strlen(texto) + 1);
+    char *datos_decifrados = (char*)malloc(strlen(texto) + 1);
+
+    cifrar_liska(texto, key, datos_cifrados);
+    printf("Cifrado: ");
+    hexadecimal(datos_cifrados);
+
+    decifrar_liska(datos_cifrados, key, datos_decifrados);
+    printf("Descifrado: %s\n", datos_decifrados);
+
+    return 0;
+}
+```
+
+Tambien puedes optar sin usar malloc
+
+```c
+#include <string.h>
+#include <stdio.h>
+#include "liska.h"
+
+int main() {
+    const char texto[] = "Wired";
+    const char key[] = "Lain";
+    
+    char datos_cifrados[strlen(texto) + 1];
+    char datos_decifrados[strlen(texto) + 1];
+
+    cifrar_liska(texto, key, datos_cifrados);
+    printf("Cifrado: ");
+    hexadecimal(datos_cifrados);
+
+    decifrar_liska(datos_cifrados, key, datos_decifrados);
+    printf("Descifrado: %s\n", datos_decifrados);
+
+    return 0;
+}
+```
+
 **Puntos adicionales**
 
-- En todo el codigo veras que existen valores contantes los que estan en la funcion ```split_mix```, estos son valores de la implementacion original de los algoritmos que se estan usando de acuerdo a wiki, sin embargo, puedes modificar esos valores, de hecho, cambiarias por completo el resultado del cifrado modificando aun que sea solo un byte
+- En todo el codigo veras que existen valores contantes los que estan en la funcion ```split_mix```, estos son valores de la implementacion original de los algoritmos que se estan usando de acuerdo a wiki, sin embargo, puedes modificar esos valores (no lo recomiendo), de hecho, cambiarias por completo el resultado del cifrado modificando aun que sea solo un byte
 
-> Proximamente la funcion de cifrar archivos
