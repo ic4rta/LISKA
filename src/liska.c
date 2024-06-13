@@ -63,7 +63,7 @@ void decifrar_liska(const char *datos, const char *key, char *datos_decifrados) 
 
 void hexadecimal(const char *datos) {
     while (*datos) {
-        printf("%02X", (unsigned char)*datos);
+        printf("%x", (unsigned char)*datos);
         datos++;
     }
     printf("\n");
