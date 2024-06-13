@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/ic4rta/LISKA/assets/blob/main/lain.png" alt="drawing" width="150"/>
+  <img src="https://github.com/ic4rta/LISKA/blob/main/assets/lain.png" alt="drawing" width="150"/>
 </p>
 
 <bold><p align="center">
